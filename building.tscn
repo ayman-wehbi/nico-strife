@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://data/objects/psychedelic_erwin/scene.gltf" type="PackedScene" id=1]
+[ext_resource path="res://scripts/float.gd" type="Script" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="scene" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.410066, 0, 0.912056, 0, 1, 0, -0.912056, 0, -0.410066, -22.529, 0.495428, -36.1644 )
+script = ExtResource( 2 )

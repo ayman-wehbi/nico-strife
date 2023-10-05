@@ -1,0 +1,147 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://data/nico-bot.gltf" type="PackedScene" id=1]
+[ext_resource path="res://scripts/player-contorl.gd" type="Script" id=2]
+[ext_resource path="res://final_cam.gd" type="Script" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Jumping-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Running-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Sprint-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "T-Pose-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "run-kick-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "spin-kick-loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 1
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/Idle/node = SubResource( 1 )
+states/Idle/position = Vector2( 981, 39 )
+states/Jump/node = SubResource( 2 )
+states/Jump/position = Vector2( 515, 39 )
+states/Running/node = SubResource( 3 )
+states/Running/position = Vector2( 523, 535 )
+states/Sprint/node = SubResource( 4 )
+states/Sprint/position = Vector2( 178, 241 )
+states/T-Pose-loop/node = SubResource( 5 )
+states/T-Pose-loop/position = Vector2( 1232, 88 )
+states/run-kick-loop/node = SubResource( 6 )
+states/run-kick-loop/position = Vector2( 178, 423 )
+states/spin-kick-loop/node = SubResource( 7 )
+states/spin-kick-loop/position = Vector2( 981, 418 )
+transitions = [ "Idle", "Running", SubResource( 10 ), "Running", "Sprint", SubResource( 11 ), "Running", "Idle", SubResource( 12 ), "Sprint", "Idle", SubResource( 13 ), "Idle", "Sprint", SubResource( 14 ), "Sprint", "Running", SubResource( 15 ), "Idle", "Jump", SubResource( 16 ), "Sprint", "Jump", SubResource( 17 ), "Jump", "Idle", SubResource( 18 ), "Jump", "Sprint", SubResource( 19 ), "Running", "Jump", SubResource( 20 ), "Jump", "Running", SubResource( 21 ), "Sprint", "run-kick-loop", SubResource( 22 ), "run-kick-loop", "Sprint", SubResource( 23 ), "spin-kick-loop", "Running", SubResource( 24 ), "Running", "spin-kick-loop", SubResource( 25 ), "Idle", "spin-kick-loop", SubResource( 26 ), "spin-kick-loop", "Idle", SubResource( 27 ), "spin-kick-loop", "Jump", SubResource( 28 ), "Jump", "spin-kick-loop", SubResource( 29 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -137.965, -24.7253 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+
+[sub_resource type="CapsuleShape" id=32]
+radius = 0.401381
+
+[node name="KinematicBody" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62024, 0 )
+script = ExtResource( 2 )
+animationtree = NodePath("AnimationTree")
+
+[node name="nico_bot" parent="." instance=ExtResource( 1 )]
+
+[node name="AnimationPlayer" parent="nico_bot" index="1"]
+reset_on_save = false
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 8 )
+anim_player = NodePath("../nico_bot/AnimationPlayer")
+active = true
+root_motion_track = NodePath("Armature/Skeleton:RootMotion")
+parameters/playback = SubResource( 31 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0402833, 0.9449, 0.0146041 )
+shape = SubResource( 32 )
+
+[node name="Spatial" type="Spatial" parent="."]
+script = ExtResource( 3 )
+
+[node name="base" type="Spatial" parent="."]
+transform = Transform( -0.999776, -0.00739475, 0.0198172, 0, 0.936898, 0.349602, -0.0211519, 0.349524, -0.936689, 0, 1.77502, -1.98182 )
+
+[node name="cam" type="Camera" parent="base"]
+transform = Transform( 1, -0.00112242, -0.000455838, 0.00114667, 0.99836, 0.0572378, 0.00039085, -0.0572378, 0.99836, 0.0298973, 0.0474278, 1.53088 )
+current = true
+fov = 74.6017
+
+[editable path="nico_bot"]
