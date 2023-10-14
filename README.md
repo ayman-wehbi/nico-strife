@@ -15,7 +15,7 @@ look and play. Victory is when a player finishes a level and proceeds to the nex
 life.
 
 ## Steps Installing the Game
-Download the nico_strife_0.0.1.exe and nico_strife_0.0.1.pck folder, then run the exe file. Installation of Godot Game Engine may be needed for the file to run.
+[Download](https://myuno-my.sharepoint.com/:f:/g/personal/awehbi_uno_edu/ErMWCnxwDxHyCapmgYTypH3f54XqkLYfxhZ8m5aLewzNYUP?e=ymzxeZ) the nico_strife_0.0.1.exe and nico_strife_0.0.1.pck folder, then run the exe file. Installation of Godot Game Engine may be needed for the file to run.
 
 
 ## Controls
